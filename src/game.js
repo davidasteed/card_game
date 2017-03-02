@@ -1,5 +1,10 @@
 module.exports = function playGame(playerArray) {
 
+  // return with error message if no playerArray was provided
+  if (!playerArray) {
+    return("Error:  an array containing two players was not provided, exiting");
+  }
+
   // store the current timestamp (the delta between now and "Unix epoch")
   let timeStartGame = new Date();
 
@@ -53,35 +58,168 @@ module.exports = function playGame(playerArray) {
     card1 = gameDeck.splice(0, 1);
     card2 = gameDeck.splice(0, 1);
 
-    // if necessary, convert the face cards into numerical values
+    // convert the cards into numerical values
     switch (card1[0]) {
-      case "J":
+      case "2s":
+      case "2c":
+      case "2h":
+      case "2d":
+        card1[0] = 2;
+        break;
+      case "3s":
+      case "3c":
+      case "3h":
+      case "3d":
+        card1[0] = 3;
+        break;
+      case "4s":
+      case "4c":
+      case "4h":
+      case "4d":
+        card1[0] = 4;
+        break;
+      case "5s":
+      case "5c":
+      case "5h":
+      case "5d":
+        card1[0] = 5;
+        break;
+      case "6s":
+      case "6c":
+      case "6h":
+      case "6d":
+        card1[0] = 6;
+        break;
+      case "7s":
+      case "7c":
+      case "7h":
+      case "7d":
+        card1[0] = 7;
+        break;
+      case "8s":
+      case "8c":
+      case "8h":
+      case "8d":
+        card1[0] = 8;
+        break;
+      case "9s":
+      case "9c":
+      case "9h":
+      case "9d":
+        card1[0] = 9;
+        break;
+      case "10s":
+      case "10c":
+      case "10h":
+      case "10d":
         card1[0] = 10;
         break;
-      case "Q":
+      case "Js":
+      case "Jc":
+      case "Jh":
+      case "Jd":
         card1[0] = 11;
         break;
-      case "K":
+      case "Qs":
+      case "Qc":
+      case "Qh":
+      case "Qd":
         card1[0] = 12;
         break;
-      case "A":
+      case "Ks":
+      case "Kc":
+      case "Kh":
+      case "Kd":
         card1[0] = 13;
+        break;
+      case "As":
+      case "Ac":
+      case "Ah":
+      case "Ad":
+        card1[0] = 14;
         break;
       default:
         break;
     }
+
     switch (card2[0]) {
-      case "J":
+      case "2s":
+      case "2c":
+      case "2h":
+      case "2d":
+        card2[0] = 2;
+        break;
+      case "3s":
+      case "3c":
+      case "3h":
+      case "3d":
+        card2[0] = 3;
+        break;
+      case "4s":
+      case "4c":
+      case "4h":
+      case "4d":
+        card2[0] = 4;
+        break;
+      case "5s":
+      case "5c":
+      case "5h":
+      case "5d":
+        card2[0] = 5;
+        break;
+      case "6s":
+      case "6c":
+      case "6h":
+      case "6d":
+        card2[0] = 6;
+        break;
+      case "7s":
+      case "7c":
+      case "7h":
+      case "7d":
+        card2[0] = 7;
+        break;
+      case "8s":
+      case "8c":
+      case "8h":
+      case "8d":
+        card2[0] = 8;
+        break;
+      case "9s":
+      case "9c":
+      case "9h":
+      case "9d":
+        card2[0] = 9;
+        break;
+      case "10s":
+      case "10c":
+      case "10h":
+      case "10d":
         card2[0] = 10;
         break;
-      case "Q":
+      case "Js":
+      case "Jc":
+      case "Jh":
+      case "Jd":
         card2[0] = 11;
         break;
-      case "K":
+      case "Qs":
+      case "Qc":
+      case "Qh":
+      case "Qd":
         card2[0] = 12;
         break;
-      case "A":
+      case "Ks":
+      case "Kc":
+      case "Kh":
+      case "Kd":
         card2[0] = 13;
+        break;
+      case "As":
+      case "Ac":
+      case "Ah":
+      case "Ad":
+        card2[0] = 14;
         break;
       default:
         break;
@@ -95,22 +233,11 @@ module.exports = function playGame(playerArray) {
     } else if (card1[0] === card2[0]) {
       gameResults.numberOfTies += 1;
     }
-
   }
 
   // calculate and store win ratios
   gameResults.players[0].winRatio = gameResults.players[0].numberOfWins / gameResults.players[1].numberOfWins;
   gameResults.players[1].winRatio = gameResults.players[1].numberOfWins / gameResults.players[0].numberOfWins;
-
-  // // debug: print the gameresults object:
-  // console.log("date is" + gameResults.date);
-  // console.log("player1 name is: " + gameResults.players[0].name);
-  // console.log("player2 name is: " + gameResults.players[1].name);
-  // console.log("player1 numberOfWins is: " + gameResults.players[0].numberOfWins);
-  // console.log("player2 numberOfWins is: " + gameResults.players[1].numberOfWins);
-  // console.log("player1 win ratio is: " + gameResults.players[0].winRatio);
-  // console.log("player2 win ratio is: " + gameResults.players[1].winRatio);
-  //
 
   return gameResults;
 };
